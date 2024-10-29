@@ -1,0 +1,13 @@
+33;Sava;Rares
+2;User;Om
+3;Orga;Goli
+5;Mihai;Boris
+10;Userul;Viu
+11;Pote;Rope
+333;Alex;Save
+334;Raul;Matei
+335;Alex;Tau
+50;Matei;Pop
+20;Raul;Gorga
+150;Robi;IIuh
+60;Alex;Grigore
