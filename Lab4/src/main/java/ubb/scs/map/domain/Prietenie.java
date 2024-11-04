@@ -15,6 +15,11 @@ public class Prietenie extends Entity<Tuplu<Long, Long>> {
     }
 
     @Override
+    public String toString() {
+        return "{" + "id1=" + getTuplu().getE1() + " catre id2=" + getTuplu().getE2() + "}";
+    }
+
+    @Override
     public boolean equals(Object o) { // =tuplu
         if (this == o) return true;
         if (!(o instanceof Prietenie)) return false;

@@ -7,8 +7,8 @@ import ubb.scs.map.domain.validators.PrietenieValidator;
 import ubb.scs.map.domain.validators.UtilizatorValidator;
 import ubb.scs.map.domain.validators.Validator;
 import ubb.scs.map.repository.Repository;
-import ubb.scs.map.repository.file.PrietenieRepository;
-import ubb.scs.map.repository.file.UtilizatorRepository;
+import ubb.scs.map.repository.database.PrietenieDbRepository;
+import ubb.scs.map.repository.database.UtilizatorDbRepository;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
 import ubb.scs.map.ui.ConsoleUI;
@@ -50,15 +50,21 @@ public class Main {
         p2.setId(new Tuplu<>(8L, 3L));
         System.out.println(p.getId().equals(p2.getId()));
 */
+        String username = "postgres";
+        String password = "maplabs";
+        String url = "jdbc:postgresql://localhost:5432/socialnetwork";
 
         Validator<Utilizator> utilizatorValidator = new UtilizatorValidator();
-        Repository<Long, Utilizator> utilizatorRepository = new UtilizatorRepository(utilizatorValidator, "./data/utilizatori.txt");
+        //Repository<Long, Utilizator> utilizatorRepository = new UtilizatorRepository(utilizatorValidator, "./data/utilizatori.txt");
+        Repository<Long, Utilizator> utilizatorDbRepository = new UtilizatorDbRepository(url, username, password, utilizatorValidator);
 
         Validator<Prietenie> prietenieValidator = new PrietenieValidator();
-        Repository<Tuplu<Long, Long>, Prietenie> prietenieRepository = new PrietenieRepository(prietenieValidator, "./data/prietenii.txt");
+        //Repository<Tuplu<Long, Long>, Prietenie> prietenieRepository = new PrietenieRepository(prietenieValidator, "./data/prietenii.txt");
+        Repository<Tuplu<Long, Long>, Prietenie> prietenieDbRepository = new PrietenieDbRepository(url, username, password, prietenieValidator);
 
-        UtilizatorService utilizatorService = new UtilizatorService(utilizatorRepository);
-        PrietenieService prietenieService = new PrietenieService(prietenieRepository, utilizatorRepository);
+
+        UtilizatorService utilizatorService = new UtilizatorService(utilizatorDbRepository);
+        PrietenieService prietenieService = new PrietenieService(prietenieDbRepository, utilizatorDbRepository);
         ConsoleUI consoleUI = new ConsoleUI(utilizatorService, prietenieService);
         consoleUI.start();
     }

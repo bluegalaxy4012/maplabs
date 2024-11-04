@@ -48,15 +48,33 @@ public class PrietenieService {
     public void removePrietenii(Long userId) {
         Iterable<Prietenie> prietenii = prietenieRepository.findAll();
 
-        List<Tuplu<Long, Long>> toRemove = StreamSupport.stream(prietenii.spliterator(), false)
-                .filter(p -> p.getId().getE1().equals(userId) || p.getId().getE2().equals(userId))
-                .map(Prietenie::getId)
-                .collect(Collectors.toList());
+        List<Tuplu<Long, Long>> toRemove = StreamSupport.stream(prietenii.spliterator(), false).filter(p -> p.getId().getE1().equals(userId) || p.getId().getE2().equals(userId)).map(Prietenie::getId).collect(Collectors.toList());
 
-//        for (Tuplu<Long, Long> id : toRemove) {
-//            prietenieRepository.delete(id);
-//        }
         toRemove.forEach(prietenieRepository::delete);
+    }
+
+    public Iterable<Prietenie> getPrietenii() {
+        return prietenieRepository.findAll();
+    }
+
+    private Map<Long, List<Long>> buildGraf() {
+        Map<Long, List<Long>> graf = new HashMap<>();
+        Iterable<Prietenie> prietenii = prietenieRepository.findAll();
+
+        for (Prietenie prietenie : prietenii) {
+            Long userId1 = prietenie.getId().getE1();
+            Long userId2 = prietenie.getId().getE2();
+
+            Tuplu<Long, Long> reverseTuplu = new Tuplu<>(userId2, userId1);
+            if (prietenieRepository.findOne(reverseTuplu).isPresent()) {
+                graf.putIfAbsent(userId1, new ArrayList<>());
+                graf.get(userId1).add(userId2);
+
+                graf.putIfAbsent(userId2, new ArrayList<>());
+                graf.get(userId2).add(userId1);
+            }
+        }
+        return graf;
     }
 
     public Long getNumarComunitati() {
@@ -76,40 +94,18 @@ public class PrietenieService {
     public List<String> getCeaMaiSociabilaComunitate() {
         Map<Long, List<Long>> graf = buildGraf();
         Set<Long> visited = new HashSet<>();
-        List<String> ceaMaiSociabilaComunitate = new ArrayList<>();
-        Long drumMaxim = 0L;
+        List<String> celMaiLungDrum = new ArrayList<>();
 
         for (Long userId : graf.keySet()) {
             if (!visited.contains(userId)) {
-                List<String> comunitate = new ArrayList<>();
-                Long drum = dfs_DrumMaxim(userId, graf, visited, comunitate, 0L);
-                if (drum > drumMaxim) {
-                    drumMaxim = drum;
-                    ceaMaiSociabilaComunitate = comunitate;
+                List<String> drumComponenta = new ArrayList<>();
+                dfsDrumMaxim(userId, graf, visited, new ArrayList<>(), drumComponenta);
+                if (drumComponenta.size() > celMaiLungDrum.size()) {
+                    celMaiLungDrum = drumComponenta;
                 }
             }
         }
-        return ceaMaiSociabilaComunitate;
-    }
-
-    private Map<Long, List<Long>> buildGraf() {
-        Map<Long, List<Long>> graf = new HashMap<>();
-        Iterable<Prietenie> prietenii = prietenieRepository.findAll();
-
-        for (Prietenie prietenie : prietenii) {
-            Long user1 = prietenie.getId().getE1();
-            Long user2 = prietenie.getId().getE2();
-
-            Tuplu<Long, Long> reverseTuplu = new Tuplu<>(user2, user1);
-            if (prietenieRepository.findOne(reverseTuplu).isPresent()) {
-                graf.putIfAbsent(user1, new ArrayList<>());
-                graf.get(user1).add(user2);
-
-                graf.putIfAbsent(user2, new ArrayList<>());
-                graf.get(user2).add(user1);
-            }
-        }
-        return graf;
+        return celMaiLungDrum;
     }
 
     private void dfs(Long userId, Map<Long, List<Long>> graf, Set<Long> visited) {
@@ -121,16 +117,21 @@ public class PrietenieService {
         }
     }
 
-    private Long dfs_DrumMaxim(Long userId, Map<Long, List<Long>> graf, Set<Long> visited, List<String> comunitate, Long dist) {
+    private void dfsDrumMaxim(Long userId, Map<Long, List<Long>> graf, Set<Long> visited, List<String> drumCurent, List<String> drumMaxim) {
         visited.add(userId);
-        comunitate.add(utilizatorRepository.findOne(userId).map(u -> u.getFirstName() + " " + u.getLastName()).orElseThrow(() -> new ServiceException("Un utilizator nu a putut fi gasit.")));
-        Long maxim = dist;
+        drumCurent.add(utilizatorRepository.findOne(userId).map(u -> u.getFirstName() + " " + u.getLastName()).orElseThrow(() -> new ServiceException("Un utilizator nu a putut fi gasit.")));
+
+        if (drumCurent.size() > drumMaxim.size()) {
+            drumMaxim.clear();
+            drumMaxim.addAll(drumCurent);
+        }
 
         for (Long vecin : graf.get(userId)) {
             if (!visited.contains(vecin)) {
-                maxim = Math.max(maxim, dfs_DrumMaxim(vecin, graf, visited, comunitate, dist + 1));
+                dfsDrumMaxim(vecin, graf, visited, drumCurent, drumMaxim);
             }
         }
-        return maxim;
+        drumCurent.remove(drumCurent.size() - 1);
+        visited.remove(userId);
     }
 }

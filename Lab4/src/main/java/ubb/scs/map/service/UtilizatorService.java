@@ -17,10 +17,7 @@ public class UtilizatorService {
     }
 
     public void addUtilizator(String firstName, String lastName) throws ValidationException, ServiceException {
-        Long largestId = StreamSupport.stream(utilizatorRepository.findAll().spliterator(), false)
-                .max(Comparator.comparing(Utilizator::getId))
-                .map(Utilizator::getId)
-                .orElse(0L);
+        Long largestId = StreamSupport.stream(utilizatorRepository.findAll().spliterator(), false).max(Comparator.comparing(Utilizator::getId)).map(Utilizator::getId).orElse(0L);
 
         Long newId = largestId + 1;
         Utilizator utilizator = new Utilizator(firstName, lastName);
@@ -36,5 +33,9 @@ public class UtilizatorService {
         if (removed.isEmpty()) {
             throw new ServiceException("Utilizatorul nu a putut fi eliminat.");
         }
+    }
+
+    public Iterable<Utilizator> getUtilizatori() {
+        return utilizatorRepository.findAll();
     }
 }

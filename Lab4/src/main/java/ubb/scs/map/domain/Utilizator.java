@@ -3,8 +3,8 @@ package ubb.scs.map.domain;
 import java.util.Objects;
 
 public class Utilizator extends Entity<Long> {
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     public Utilizator(String firstName, String lastName) {
         this.firstName = firstName;
@@ -21,7 +21,7 @@ public class Utilizator extends Entity<Long> {
 
     @Override
     public String toString() {
-        return "Utilizator{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", friends=" + '}';
+        return "Utilizator{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", id=" + getId() + "}";
     }
 
     @Override

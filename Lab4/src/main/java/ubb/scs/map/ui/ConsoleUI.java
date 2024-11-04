@@ -28,6 +28,8 @@ public class ConsoleUI {
             System.out.println("4 Elimina prietenie");
             System.out.println("5 Afiseaza numar comunitati");
             System.out.println("6 Afiseaza cea mai sociabila comunitate");
+            System.out.println("7 Afiseaza utilizatorii");
+            System.out.println("8 Afiseaza prieteniile");
             System.out.println("0 Oprire");
             System.out.print("Optiune: ");
             try {
@@ -52,6 +54,12 @@ public class ConsoleUI {
                         break;
                     case 6:
                         afisareCeaMaiSociabilaComunitate();
+                        break;
+                    case 7:
+                        utilizatorService.getUtilizatori().forEach(System.out::println);
+                        break;
+                    case 8:
+                        prietenieService.getPrietenii().forEach(System.out::println);
                         break;
                     case 0:
                         return;
