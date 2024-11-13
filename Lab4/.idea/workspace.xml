@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3849faae-8726-4b9e-821c-4cf5d402f8ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2/storage_v2/_src_/database/socialnetwork.IX5BsA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2/storage_v2/_src_/database/socialnetwork.IX5BsA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab3/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/prietenii.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/prietenii.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/utilizatori.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/utilizatori.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Prietenie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Prietenie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Utilizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Utilizator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/ConsoleUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +171,13 @@
       <workItem from="1730670048401" duration="142000" />
       <workItem from="1730670241262" duration="1644000" />
       <workItem from="1730671893545" duration="1620000" />
-      <workItem from="1730724975134" duration="2630000" />
+      <workItem from="1730724975134" duration="3114000" />
+      <workItem from="1730909876625" duration="2107000" />
+      <workItem from="1730993271057" duration="573000" />
+      <workItem from="1731027437985" duration="293000" />
+      <workItem from="1731046344841" duration="167000" />
+      <workItem from="1731046525097" duration="4675000" />
+      <workItem from="1731501025572" duration="2686000" />
     </task>
     <servers />
   </component>
@@ -204,6 +194,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
