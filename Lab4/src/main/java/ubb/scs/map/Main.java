@@ -11,7 +11,6 @@ import ubb.scs.map.repository.database.PrietenieDbRepository;
 import ubb.scs.map.repository.database.UtilizatorDbRepository;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
-import ubb.scs.map.ui.ConsoleUI;
 import ubb.scs.map.ui.JavaFxGUI;
 
 public class Main {
@@ -72,7 +71,5 @@ public class Main {
         //consoleUI.start();
 
         JavaFxGUI.main(args);
-
-
     }
 }

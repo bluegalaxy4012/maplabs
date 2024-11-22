@@ -14,12 +14,18 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
     protected final String username;
     protected final String password;
     protected final Validator<E> validator;
+    protected Connection connection;
 
     public AbstractDbRepository(String url, String username, String password, Validator<E> validator) {
         this.url = url;
         this.username = username;
         this.password = password;
         this.validator = validator;
+        try {
+            this.connection = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     protected abstract E extractEntity(ResultSet resultSet) throws SQLException;
@@ -40,7 +46,7 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
     public Optional<E> findOne(ID id) {
         E entity = null;
         String query = "SELECT * FROM " + getTableName() + " WHERE " + getPrimaryKeyCondition();
-        try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             setPrimaryKeyParameters(statement, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -56,7 +62,7 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
     public Iterable<E> findAll() {
         Set<E> entities = new HashSet<>();
         String query = "SELECT * FROM " + getTableName();
-        try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
+        try (PreparedStatement statement = connection.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 entities.add(extractEntity(resultSet));
             }
@@ -71,7 +77,7 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
         validator.validate(entity);
         String query = "INSERT INTO " + getTableName() + " (" + getColumnNames() + ") VALUES (" + "?,".repeat(getColumnCount() - 1) + "?)";
         int rez = -1;
-        try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             setEntityParameters(statement, entity);
             rez = statement.executeUpdate();
         } catch (SQLException e) {
@@ -87,7 +93,7 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
         if (entity.isEmpty()) return Optional.empty();
         String query = "DELETE FROM " + getTableName() + " WHERE " + getPrimaryKeyCondition();
         int rez = -1;
-        try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             setPrimaryKeyParameters(statement, id);
             rez = statement.executeUpdate();
         } catch (SQLException e) {
@@ -102,7 +108,7 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
         validator.validate(entity);
         String query = "UPDATE " + getTableName() + " SET " + getColumnNames() + " WHERE " + getPrimaryKeyCondition();
         int rez = -1;
-        try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             setEntityParameters(statement, entity);
             setPrimaryKeyParameters(statement, entity.getId());
             rez = statement.executeUpdate();

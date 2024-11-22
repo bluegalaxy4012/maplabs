@@ -81,7 +81,7 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
         Utilizator utilizator = tableView.getSelectionModel().getSelectedItem();
         if (utilizator != null) {
             utilizatorService.removeUtilizator(utilizator.getId());
-            MessageAlert.showMessage(null, Alert.AlertType.CONFIRMATION, "Delete user", "User has been deleted");
+            MessageAlert.showMessage(null, Alert.AlertType.CONFIRMATION, "Stergere utilizator", "Utilizatorul a fost sters");
         } else {
             MessageAlert.showErrorMessage(null, "Niciun utilizator selectat");
         }

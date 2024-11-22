@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3849faae-8726-4b9e-821c-4cf5d402f8ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/EditUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/JavaFxGUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/MessageAlert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/JavaFxGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/utils/events/PrietenieEntityChangeEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-menu-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2/storage_v2/_src_/database/socialnetwork.IX5BsA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2/storage_v2/_src_/database/socialnetwork.IX5BsA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Prietenie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Prietenie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/images/om.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,12 +57,12 @@
     &quot;assignee&quot;: &quot;bluegalaxy4012&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/bluegalaxy4012/maplabs.git&quot;,
-    &quot;accountId&quot;: &quot;320401c7-5b70-46ac-ae44-5e1141a47e5b&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:bluegalaxy4012/maplabs.git",
+    "accountId": "320401c7-5b70-46ac-ae44-5e1141a47e5b"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -206,7 +191,8 @@
       <workItem from="1732004469814" duration="734000" />
       <workItem from="1732005214069" duration="1209000" />
       <workItem from="1732186841123" duration="12437000" />
-      <workItem from="1732228425063" duration="7148000" />
+      <workItem from="1732228425063" duration="7263000" />
+      <workItem from="1732255796126" duration="1042000" />
     </task>
     <servers />
   </component>
