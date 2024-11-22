@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>808</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+13920||-9223372036854775808|c|G
+13920||10|c|G
+13920||10|C|G
+13920||10|T|G</Grants>
+      <IntrospectionStateNumber>922</IntrospectionStateNumber>
       <ServerVersion>14.13</ServerVersion>
-      <StartupTime>1730716527</StartupTime>
+      <StartupTime>1732228392</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1405,7 +1413,7 @@ false posixrules
 13555||10|C|G
 13555||-9223372036854775808|U|G
 13555||10|U|G</Grants>
-      <IntrospectionStateNumber>808</IntrospectionStateNumber>
+      <IntrospectionStateNumber>922</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4830,8 +4838,8 @@ false posixrules
     <schema id="262" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>808</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-11-04.12:57:20</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>922</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-11-21.23:55:10</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4846,7 +4854,7 @@ false posixrules
     </sequence>
     <table id="264" parent="262" name="prietenii">
       <ObjectId>16422</ObjectId>
-      <StateNumber>807</StateNumber>
+      <StateNumber>921</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4870,7 +4878,15 @@ false posixrules
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="268" parent="264" name="prietenii_id1_fkey">
+    <column id="268" parent="264" name="request_from">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>921</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <foreign-key id="269" parent="264" name="prietenii_id1_fkey">
       <ColNames>id1</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16427</ObjectId>
@@ -4879,7 +4895,7 @@ false posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16416</RefTableId>
     </foreign-key>
-    <foreign-key id="269" parent="264" name="prietenii_id2_fkey">
+    <foreign-key id="270" parent="264" name="prietenii_id2_fkey">
       <ColNames>id2</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16432</ObjectId>
@@ -4888,7 +4904,7 @@ false posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16416</RefTableId>
     </foreign-key>
-    <index id="270" parent="264" name="prietenii_pkey">
+    <index id="271" parent="264" name="prietenii_pkey">
       <ColNames>id1
 id2</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -4898,14 +4914,14 @@ id2</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="271" parent="264" name="prietenii_pkey">
+    <key id="272" parent="264" name="prietenii_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16426</ObjectId>
       <Primary>1</Primary>
       <StateNumber>807</StateNumber>
       <UnderlyingIndexId>16425</UnderlyingIndexId>
     </key>
-    <column id="272" parent="265" name="id">
+    <column id="273" parent="265" name="id">
       <DefaultExpression>nextval(&apos;utilizatori_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4914,21 +4930,21 @@ id2</ColNames>
       <SequenceId>16415</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="273" parent="265" name="first_name">
+    <column id="274" parent="265" name="first_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>806</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="274" parent="265" name="last_name">
+    <column id="275" parent="265" name="last_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>806</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="275" parent="265" name="utilizatori_pkey">
+    <index id="276" parent="265" name="utilizatori_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16420</ObjectId>
@@ -4937,7 +4953,7 @@ id2</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="276" parent="265" name="utilizatori_pkey">
+    <key id="277" parent="265" name="utilizatori_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16421</ObjectId>
       <Primary>1</Primary>

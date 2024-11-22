@@ -12,9 +12,11 @@ import ubb.scs.map.repository.database.UtilizatorDbRepository;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
 import ubb.scs.map.ui.ConsoleUI;
+import ubb.scs.map.ui.JavaFxGUI;
 
 public class Main {
     public static void main(String[] args) {
+
 /*
         Repository<Long, Utilizator> repo = new InMemoryRepository<Long, Utilizator>(new UtilizatorValidator());
         Repository<Long, Utilizator> repoFile = new UtilizatorRepository(new UtilizatorValidator(), "./data/utilizatori.txt");
@@ -65,7 +67,12 @@ public class Main {
 
         UtilizatorService utilizatorService = new UtilizatorService(utilizatorDbRepository);
         PrietenieService prietenieService = new PrietenieService(prietenieDbRepository, utilizatorDbRepository);
-        ConsoleUI consoleUI = new ConsoleUI(utilizatorService, prietenieService);
-        consoleUI.start();
+
+        //ConsoleUI consoleUI = new ConsoleUI(utilizatorService, prietenieService);
+        //consoleUI.start();
+
+        JavaFxGUI.main(args);
+
+
     }
 }

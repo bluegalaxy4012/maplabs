@@ -4,31 +4,38 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Prietenie extends Entity<Tuplu<Long, Long>> {
-    private final LocalDateTime data;
+    private LocalDateTime requestFrom;
 
     public Prietenie() {
-        this.data = LocalDateTime.now();
+        this.requestFrom = LocalDateTime.now();
     }
 
     public Tuplu<Long, Long> getTuplu() {
         return getId();
     }
 
+    public LocalDateTime getRequestFrom() {
+        return requestFrom;
+    }
+
+    public void setRequestFrom(LocalDateTime requestFrom) {
+        this.requestFrom = requestFrom;
+    }
+
     @Override
     public String toString() {
-        return "{" + "id1=" + getTuplu().getE1() + " catre id2=" + getTuplu().getE2() + "}";
+        return "{" + "id " + getTuplu().getE1() + " cerere catre id " + getTuplu().getE2() + "}";
     }
 
     @Override
     public boolean equals(Object o) { // =tuplu
         if (this == o) return true;
-        if (!(o instanceof Prietenie)) return false;
-        Prietenie prietenie = (Prietenie) o;
+        if (!(o instanceof Prietenie prietenie)) return false;
         return getTuplu().equals(prietenie.getTuplu());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(data);
+        return Objects.hashCode(requestFrom);
     }
 }

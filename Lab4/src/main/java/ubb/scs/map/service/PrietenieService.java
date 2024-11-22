@@ -5,14 +5,20 @@ import ubb.scs.map.domain.Tuplu;
 import ubb.scs.map.domain.Utilizator;
 import ubb.scs.map.domain.validators.ServiceException;
 import ubb.scs.map.repository.Repository;
+import ubb.scs.map.utils.Constants;
+import ubb.scs.map.utils.events.ChangeEventType;
+import ubb.scs.map.utils.events.PrietenieEntityChangeEvent;
+import ubb.scs.map.utils.observer.Observable;
+import ubb.scs.map.utils.observer.Observer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class PrietenieService {
+public class PrietenieService implements Observable<PrietenieEntityChangeEvent> {
     private final Repository<Tuplu<Long, Long>, Prietenie> prietenieRepository;
     private final Repository<Long, Utilizator> utilizatorRepository;
+    private final List<Observer<PrietenieEntityChangeEvent>> observers = new ArrayList<>();
 
     public PrietenieService(Repository<Tuplu<Long, Long>, Prietenie> prietenieRepository, Repository<Long, Utilizator> utilizatorRepository) {
         this.prietenieRepository = prietenieRepository;
@@ -28,6 +34,7 @@ public class PrietenieService {
         prietenie.setId(new Tuplu<>(id1, id2));
 
         prietenieRepository.save(prietenie);
+        notifyObservers(new PrietenieEntityChangeEvent(ChangeEventType.ADD, prietenie));
     }
 
     public void removePrietenie(Long id1, Long id2) {
@@ -35,13 +42,18 @@ public class PrietenieService {
             throw new ServiceException("Prietenia nu a putut fi eliminata.");
         }
 
+        Prietenie p1 = new Prietenie(), p2 = new Prietenie();
         Tuplu<Long, Long> tuplu1 = new Tuplu<>(id1, id2);
         Tuplu<Long, Long> tuplu2 = new Tuplu<>(id2, id1);
+        p1.setId(tuplu1);
+        p2.setId(tuplu2);
 
         if (prietenieRepository.delete(tuplu1).isEmpty()) {
             throw new ServiceException("Prietenia nu a putut fi eliminata.");
         } else {
             prietenieRepository.delete(tuplu2);
+            notifyObservers(new PrietenieEntityChangeEvent(ChangeEventType.DELETE, p1));
+            //poate if not empty deleteu inca una
         }
     }
 
@@ -55,6 +67,26 @@ public class PrietenieService {
 
     public Iterable<Prietenie> getPrietenii() {
         return prietenieRepository.findAll();
+    }
+
+    public String getStatus(Long id1, Long id2) {
+        Tuplu<Long, Long> tupludus = new Tuplu<>(id1, id2);
+        Tuplu<Long, Long> tupluintors = new Tuplu<>(id2, id1);
+
+        if (prietenieRepository.findOne(tupludus).isPresent() && prietenieRepository.findOne(tupluintors).isPresent()) {
+            if (prietenieRepository.findOne(tupludus).get().getRequestFrom().isAfter(prietenieRepository.findOne(tupluintors).get().getRequestFrom())) {
+                return "Prietenie acceptata de la data de " + prietenieRepository.findOne(tupludus).get().getRequestFrom().format(Constants.DATE_TIME_FORMATTER);
+            } else {
+                return "Prietenie acceptata de la data de " + prietenieRepository.findOne(tupluintors).get().getRequestFrom().format(Constants.DATE_TIME_FORMATTER);
+            }
+        } else if (prietenieRepository.findOne(tupludus).isPresent()) {
+            return "Cerere trimisa la data de " + prietenieRepository.findOne(tupludus).get().getRequestFrom().format(Constants.DATE_TIME_FORMATTER);
+        } else if (prietenieRepository.findOne(tupluintors).isPresent()) {
+            return "Cerere primita la data de " + prietenieRepository.findOne(tupluintors).get().getRequestFrom().format(Constants.DATE_TIME_FORMATTER);
+        } else {
+            return "Nu exista nicio cerere";
+        }
+
     }
 
     private Map<Long, List<Long>> buildGraf() {
@@ -133,5 +165,20 @@ public class PrietenieService {
         }
         drumCurent.remove(drumCurent.size() - 1);
         visited.remove(userId);
+    }
+
+    @Override
+    public void addObserver(Observer<PrietenieEntityChangeEvent> e) {
+        observers.add(e);
+    }
+
+    @Override
+    public void removeObserver(Observer<PrietenieEntityChangeEvent> e) {
+        observers.remove(e);
+    }
+
+    @Override
+    public void notifyObservers(PrietenieEntityChangeEvent t) {
+        observers.forEach(x -> x.update(t));
     }
 }

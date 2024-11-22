@@ -48,4 +48,9 @@ public class UtilizatorDbRepository extends AbstractDbRepository<Long, Utilizato
     protected String getColumnNames() {
         return "first_name, last_name";
     }
+
+    @Override
+    protected int getColumnCount() {
+        return 2;
+    }
 }

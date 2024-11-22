@@ -34,6 +34,8 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
 
     protected abstract String getColumnNames();
 
+    protected abstract int getColumnCount();
+
     @Override
     public Optional<E> findOne(ID id) {
         E entity = null;
@@ -67,7 +69,7 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
     @Override
     public Optional<E> save(E entity) {
         validator.validate(entity);
-        String query = "INSERT INTO " + getTableName() + " (" + getColumnNames() + ") VALUES (?, ?)";
+        String query = "INSERT INTO " + getTableName() + " (" + getColumnNames() + ") VALUES (" + "?,".repeat(getColumnCount() - 1) + "?)";
         int rez = -1;
         try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement(query)) {
             setEntityParameters(statement, entity);
