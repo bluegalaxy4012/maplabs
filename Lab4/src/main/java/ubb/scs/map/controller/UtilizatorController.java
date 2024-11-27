@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ubb.scs.map.domain.Utilizator;
+import ubb.scs.map.service.MesajService;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
 import ubb.scs.map.utils.events.UtilizatorEntityChangeEvent;
@@ -29,6 +30,7 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     private final ObservableList<Utilizator> model = FXCollections.observableArrayList();
     private UtilizatorService utilizatorService;
     private PrietenieService prietenieService;
+    private MesajService mesajService;
     @FXML
     private TableView<Utilizator> tableView;
     @FXML
@@ -40,10 +42,12 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     @FXML
     private TextField lastNameFilter;
 
-    public void setServices(UtilizatorService utilizatorService, PrietenieService prietenieService) {
+    public void setData(UtilizatorService utilizatorService, PrietenieService prietenieService, MesajService mesajService, Stage dialog) {
         this.utilizatorService = utilizatorService;
         this.prietenieService = prietenieService;
+        this.mesajService = mesajService;
         utilizatorService.addObserver(this);
+        dialog.setOnCloseRequest(event -> utilizatorService.removeObserver(this));
         initModel();
     }
 
@@ -121,9 +125,8 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(userMenu);
             dialogStage.setScene(scene);
-
             UtilizatorMenuController utilizatorMenuController = fxmlLoader.getController();
-            utilizatorMenuController.setData(utilizator, utilizatorService, prietenieService);
+            utilizatorMenuController.setData(utilizator, utilizatorService, prietenieService, mesajService, dialogStage);
 
             dialogStage.show();
         } catch (IOException e) {

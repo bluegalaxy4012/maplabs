@@ -6,15 +6,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ubb.scs.map.controller.UtilizatorController;
+import ubb.scs.map.domain.Mesaj;
 import ubb.scs.map.domain.Prietenie;
 import ubb.scs.map.domain.Tuplu;
 import ubb.scs.map.domain.Utilizator;
+import ubb.scs.map.domain.validators.MesajValidator;
 import ubb.scs.map.domain.validators.PrietenieValidator;
 import ubb.scs.map.domain.validators.UtilizatorValidator;
 import ubb.scs.map.domain.validators.Validator;
 import ubb.scs.map.repository.Repository;
+import ubb.scs.map.repository.database.MesajDbRepository;
 import ubb.scs.map.repository.database.PrietenieDbRepository;
 import ubb.scs.map.repository.database.UtilizatorDbRepository;
+import ubb.scs.map.service.MesajService;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
 
@@ -23,6 +27,7 @@ import java.io.IOException;
 public class JavaFxGUI extends Application {
     private UtilizatorService utilizatorService;
     private PrietenieService prietenieService;
+    private MesajService mesajService;
 
     public static void main(String[] args) {
         launch(args);
@@ -42,9 +47,12 @@ public class JavaFxGUI extends Application {
         Validator<Prietenie> prietenieValidator = new PrietenieValidator();
         Repository<Tuplu<Long, Long>, Prietenie> prietenieDbRepository = new PrietenieDbRepository(url, username, password, prietenieValidator);
 
+        Validator<Mesaj> mesajValidator = new MesajValidator();
+        Repository<Long, Mesaj> mesajDbRepository = new MesajDbRepository(url, username, password, mesajValidator, utilizatorDbRepository);
 
         utilizatorService = new UtilizatorService(utilizatorDbRepository);
         prietenieService = new PrietenieService(prietenieDbRepository, utilizatorDbRepository);
+        mesajService = new MesajService(mesajDbRepository);
 
         initView(primaryStage);
         primaryStage.show();
@@ -56,7 +64,6 @@ public class JavaFxGUI extends Application {
         primaryStage.setScene(new Scene(userLayout));
 
         UtilizatorController userController = fxmlLoader.getController();
-        userController.setServices(utilizatorService, prietenieService);
+        userController.setData(utilizatorService, prietenieService, mesajService, primaryStage);
     }
-
 }

@@ -3,17 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-13920||-9223372036854775808|c|G
-13920||10|c|G
-13920||10|C|G
-13920||10|T|G</Grants>
-      <IntrospectionStateNumber>922</IntrospectionStateNumber>
+      <IntrospectionStateNumber>980</IntrospectionStateNumber>
       <ServerVersion>14.13</ServerVersion>
-      <StartupTime>1732228392</StartupTime>
+      <StartupTime>1732532100</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1413,7 +1405,7 @@ false posixrules
 13555||10|C|G
 13555||-9223372036854775808|U|G
 13555||10|U|G</Grants>
-      <IntrospectionStateNumber>922</IntrospectionStateNumber>
+      <IntrospectionStateNumber>980</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4838,13 +4830,21 @@ false posixrules
     <schema id="262" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>922</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-11-21.23:55:10</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>980</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-11-25.18:54:26</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <sequence id="263" parent="262" name="utilizatori_id_seq">
+    <sequence id="263" parent="262" name="mesaje_id_seq">
+      <ObjectId>16467</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>978</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="264" parent="262" name="utilizatori_id_seq">
       <ObjectId>16415</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -4852,33 +4852,115 @@ false posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="264" parent="262" name="prietenii">
+    <table id="265" parent="262" name="mesaje">
+      <ObjectId>16468</ObjectId>
+      <StateNumber>978</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="266" parent="262" name="prietenii">
       <ObjectId>16422</ObjectId>
       <StateNumber>921</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="265" parent="262" name="utilizatori">
+    <table id="267" parent="262" name="recipientimesaje">
+      <ObjectId>16486</ObjectId>
+      <StateNumber>979</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="268" parent="262" name="utilizatori">
       <ObjectId>16416</ObjectId>
       <StateNumber>807</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="266" parent="264" name="id1">
+    <column id="269" parent="265" name="id">
+      <DefaultExpression>nextval(&apos;mesaje_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>978</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>16467</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="270" parent="265" name="from_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>978</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="271" parent="265" name="text">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>978</StateNumber>
+      <StoredType>text|0s</StoredType>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="272" parent="265" name="date">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>978</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="273" parent="265" name="replied_mesaj_id">
+      <Position>5</Position>
+      <StateNumber>978</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="274" parent="265" name="mesaje_from_id_fkey">
+      <ColNames>from_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16476</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>978</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16416</RefTableId>
+    </foreign-key>
+    <foreign-key id="275" parent="265" name="mesaje_replied_mesaj_id_fkey">
+      <ColNames>replied_mesaj_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16481</ObjectId>
+      <OnDelete>set-null</OnDelete>
+      <StateNumber>978</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16468</RefTableId>
+    </foreign-key>
+    <index id="276" parent="265" name="mesaje_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16474</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>978</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="277" parent="265" name="mesaje_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16475</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>978</StateNumber>
+      <UnderlyingIndexId>16474</UnderlyingIndexId>
+    </key>
+    <column id="278" parent="266" name="id1">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>807</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="267" parent="264" name="id2">
+    <column id="279" parent="266" name="id2">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>807</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="268" parent="264" name="request_from">
+    <column id="280" parent="266" name="request_from">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
@@ -4886,7 +4968,7 @@ false posixrules
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="269" parent="264" name="prietenii_id1_fkey">
+    <foreign-key id="281" parent="266" name="prietenii_id1_fkey">
       <ColNames>id1</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16427</ObjectId>
@@ -4895,7 +4977,7 @@ false posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16416</RefTableId>
     </foreign-key>
-    <foreign-key id="270" parent="264" name="prietenii_id2_fkey">
+    <foreign-key id="282" parent="266" name="prietenii_id2_fkey">
       <ColNames>id2</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16432</ObjectId>
@@ -4904,7 +4986,7 @@ false posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16416</RefTableId>
     </foreign-key>
-    <index id="271" parent="264" name="prietenii_pkey">
+    <index id="283" parent="266" name="prietenii_pkey">
       <ColNames>id1
 id2</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -4914,14 +4996,63 @@ id2</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="272" parent="264" name="prietenii_pkey">
+    <key id="284" parent="266" name="prietenii_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16426</ObjectId>
       <Primary>1</Primary>
       <StateNumber>807</StateNumber>
       <UnderlyingIndexId>16425</UnderlyingIndexId>
     </key>
-    <column id="273" parent="265" name="id">
+    <column id="285" parent="267" name="mesaj_id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>979</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="286" parent="267" name="to_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>979</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="287" parent="267" name="recipientimesaje_mesaj_id_fkey">
+      <ColNames>mesaj_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16491</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>979</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16468</RefTableId>
+    </foreign-key>
+    <foreign-key id="288" parent="267" name="recipientimesaje_to_id_fkey">
+      <ColNames>to_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16496</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>979</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16416</RefTableId>
+    </foreign-key>
+    <index id="289" parent="267" name="recipientimesaje_pkey">
+      <ColNames>mesaj_id
+to_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16489</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>979</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="290" parent="267" name="recipientimesaje_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16490</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>979</StateNumber>
+      <UnderlyingIndexId>16489</UnderlyingIndexId>
+    </key>
+    <column id="291" parent="268" name="id">
       <DefaultExpression>nextval(&apos;utilizatori_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4930,21 +5061,21 @@ id2</ColNames>
       <SequenceId>16415</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="274" parent="265" name="first_name">
+    <column id="292" parent="268" name="first_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>806</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="265" name="last_name">
+    <column id="293" parent="268" name="last_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>806</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="276" parent="265" name="utilizatori_pkey">
+    <index id="294" parent="268" name="utilizatori_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16420</ObjectId>
@@ -4953,7 +5084,7 @@ id2</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="277" parent="265" name="utilizatori_pkey">
+    <key id="295" parent="268" name="utilizatori_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16421</ObjectId>
       <Primary>1</Primary>
