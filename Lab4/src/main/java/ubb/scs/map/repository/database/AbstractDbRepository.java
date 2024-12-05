@@ -118,4 +118,5 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
         if (rez > 0) return Optional.empty();
         else return Optional.of(entity);
     }
+
 }
