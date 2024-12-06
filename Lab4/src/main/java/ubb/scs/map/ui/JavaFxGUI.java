@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import ubb.scs.map.controller.UtilizatorController;
 import ubb.scs.map.domain.Mesaj;
 import ubb.scs.map.domain.Prietenie;
-import ubb.scs.map.domain.Tuplu;
 import ubb.scs.map.domain.Utilizator;
 import ubb.scs.map.domain.validators.MesajValidator;
 import ubb.scs.map.domain.validators.PrietenieValidator;
@@ -42,16 +41,16 @@ public class JavaFxGUI extends Application {
         String url = "jdbc:postgresql://localhost:5432/socialnetwork";
 
         Validator<Utilizator> utilizatorValidator = new UtilizatorValidator();
-        Repository<Long, Utilizator> utilizatorDbRepository = new UtilizatorDbRepository(url, username, password, utilizatorValidator);
+        UtilizatorDbRepository utilizatorDbRepository = new UtilizatorDbRepository(url, username, password, utilizatorValidator);
 
         Validator<Prietenie> prietenieValidator = new PrietenieValidator();
-        Repository<Tuplu<Long, Long>, Prietenie> prietenieDbRepository = new PrietenieDbRepository(url, username, password, prietenieValidator);
+        PrietenieDbRepository prietenieDbRepository = new PrietenieDbRepository(url, username, password, prietenieValidator, utilizatorDbRepository);
 
         Validator<Mesaj> mesajValidator = new MesajValidator();
         Repository<Long, Mesaj> mesajDbRepository = new MesajDbRepository(url, username, password, mesajValidator, utilizatorDbRepository);
 
         utilizatorService = new UtilizatorService(utilizatorDbRepository);
-        prietenieService = new PrietenieService(prietenieDbRepository, utilizatorDbRepository);
+        prietenieService = new PrietenieService(prietenieDbRepository);
         mesajService = new MesajService(mesajDbRepository);
 
         initView(primaryStage);

@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3849faae-8726-4b9e-821c-4cf5d402f8ae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/JavaFxGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/JavaFxGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-menu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-menu-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +209,10 @@
       <workItem from="1732862749636" duration="531000" />
       <workItem from="1732863667388" duration="502000" />
       <workItem from="1732865155149" duration="569000" />
-      <workItem from="1733332705133" duration="2043000" />
+      <workItem from="1733332705133" duration="5178000" />
+      <workItem from="1733416881241" duration="10496000" />
+      <workItem from="1733466071939" duration="1408000" />
+      <workItem from="1733468543044" duration="808000" />
     </task>
     <servers />
   </component>

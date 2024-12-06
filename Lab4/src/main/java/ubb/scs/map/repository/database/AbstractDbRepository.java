@@ -2,14 +2,14 @@ package ubb.scs.map.repository.database;
 
 import ubb.scs.map.domain.Entity;
 import ubb.scs.map.domain.validators.Validator;
-import ubb.scs.map.repository.Repository;
+import ubb.scs.map.repository.PagingRepository;
+import ubb.scs.map.utils.paging.Page;
+import ubb.scs.map.utils.paging.Pageable;
 
 import java.sql.*;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
-public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements Repository<ID, E> {
+public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements PagingRepository<ID, E> {
     protected final String url;
     protected final String username;
     protected final String password;
@@ -119,4 +119,33 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
         else return Optional.of(entity);
     }
 
+    @Override
+    public Page<E> findAllOnPage(Pageable pageable) {
+        List<E> entitiesOnPage = new ArrayList<>();
+        String query = "SELECT * FROM " + getTableName() + " LIMIT ? OFFSET ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, pageable.getPageSize());
+            statement.setInt(2, pageable.getPageSize() * pageable.getPageNumber());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                entitiesOnPage.add(extractEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int totalNumberOfElements = countTotalElements();
+        return new Page<>(entitiesOnPage, totalNumberOfElements);
+    }
+
+    private int countTotalElements() {
+        String query = "SELECT COUNT(*) FROM " + getTableName();
+        try (PreparedStatement statement = connection.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

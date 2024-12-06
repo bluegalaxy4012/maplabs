@@ -4,25 +4,28 @@ import ubb.scs.map.domain.Prietenie;
 import ubb.scs.map.domain.Tuplu;
 import ubb.scs.map.domain.Utilizator;
 import ubb.scs.map.domain.validators.ServiceException;
-import ubb.scs.map.repository.Repository;
+import ubb.scs.map.repository.database.PrietenieDbRepository;
+import ubb.scs.map.repository.database.UtilizatorDbRepository;
 import ubb.scs.map.utils.Constants;
 import ubb.scs.map.utils.events.ChangeEventType;
 import ubb.scs.map.utils.events.PrietenieEntityChangeEvent;
 import ubb.scs.map.utils.observer.Observable;
 import ubb.scs.map.utils.observer.Observer;
+import ubb.scs.map.utils.paging.Page;
+import ubb.scs.map.utils.paging.Pageable;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class PrietenieService implements Observable<PrietenieEntityChangeEvent> {
-    private final Repository<Tuplu<Long, Long>, Prietenie> prietenieRepository;
-    private final Repository<Long, Utilizator> utilizatorRepository;
+    private final PrietenieDbRepository prietenieRepository;
+    private final UtilizatorDbRepository utilizatorRepository;
     private final List<Observer<PrietenieEntityChangeEvent>> observers = new ArrayList<>();
 
-    public PrietenieService(Repository<Tuplu<Long, Long>, Prietenie> prietenieRepository, Repository<Long, Utilizator> utilizatorRepository) {
+    public PrietenieService(PrietenieDbRepository prietenieRepository) {
         this.prietenieRepository = prietenieRepository;
-        this.utilizatorRepository = utilizatorRepository;
+        this.utilizatorRepository = prietenieRepository.getUtilizatorRepository();
     }
 
     public void addCererePrietenie(Long id1, Long id2) {
@@ -180,5 +183,10 @@ public class PrietenieService implements Observable<PrietenieEntityChangeEvent> 
     @Override
     public void notifyObservers(PrietenieEntityChangeEvent t) {
         observers.forEach(x -> x.update(t));
+    }
+
+
+    public Page<Utilizator> findAllOnPage(Pageable pageable, Long userId) {
+        return prietenieRepository.findAllOnPage(pageable, userId);
     }
 }

@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -20,10 +17,11 @@ import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
 import ubb.scs.map.utils.events.UtilizatorEntityChangeEvent;
 import ubb.scs.map.utils.observer.Observer;
+import ubb.scs.map.utils.paging.Page;
+import ubb.scs.map.utils.paging.Pageable;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class UtilizatorController implements Observer<UtilizatorEntityChangeEvent> {
@@ -41,6 +39,14 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     private TextField firstNameFilter;
     @FXML
     private TextField lastNameFilter;
+    @FXML
+    private Label labelPage;
+    @FXML
+    private Button buttonPrevious, buttonNext;
+
+    private final int pageSize = 6;
+    private int currentPage = 0;
+    private int nrElements = 0;
 
     public void setData(UtilizatorService utilizatorService, PrietenieService prietenieService, MesajService mesajService, Stage dialog) {
         this.utilizatorService = utilizatorService;
@@ -63,9 +69,26 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
 
 
     private void initModel() {
-        Iterable<Utilizator> utilizatori = utilizatorService.getUtilizatori();
-        List<Utilizator> filteredList = StreamSupport.stream(utilizatori.spliterator(), false).filter(utilizator -> filterByFirstName(utilizator) && filterByLastName(utilizator)).collect(Collectors.toList());
-        model.setAll(filteredList);
+        Page<Utilizator> page = utilizatorService.findAllOnPage(new Pageable(currentPage, pageSize));
+        int maxPage = (int) Math.ceil((double) page.getTotalNumberOfElements() / pageSize) - 1;
+        if (maxPage == -1) {
+            maxPage = 0;
+        }
+        if (currentPage > maxPage) {
+            currentPage = maxPage;
+            page = utilizatorService.findAllOnPage(new Pageable(currentPage, pageSize));
+        }
+        nrElements = page.getTotalNumberOfElements();
+        buttonPrevious.setDisable(currentPage == 0);
+        buttonNext.setDisable((currentPage + 1) * pageSize >= nrElements);
+        List<Utilizator> utilizatori = StreamSupport.stream(page.getElementsOnPage().spliterator(), false).filter(utilizator -> filterByFirstName(utilizator) && filterByLastName(utilizator)).toList();
+        model.setAll(utilizatori);
+        labelPage.setText("Pagina " + (currentPage + 1) + " / " + (maxPage + 1));
+
+
+//        Iterable<Utilizator> utilizatori = utilizatorService.getUtilizatori();
+//        List<Utilizator> filteredList = StreamSupport.stream(utilizatori.spliterator(), false).filter(utilizator -> filterByFirstName(utilizator) && filterByLastName(utilizator)).collect(Collectors.toList());
+//        model.setAll(filteredList);
     }
 
     @Override
@@ -98,6 +121,16 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
         } else {
             MessageAlert.showErrorMessage(null, "Niciun utilizator selectat");
         }
+    }
+
+    public void handlePreviousPage(ActionEvent actionEvent) {
+        currentPage--;
+        initModel();
+    }
+
+    public void handleNextPage(ActionEvent actionEvent) {
+        currentPage++;
+        initModel();
     }
 
     private boolean filterByFirstName(Utilizator utilizator) {

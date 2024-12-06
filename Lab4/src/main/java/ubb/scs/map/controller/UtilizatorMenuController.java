@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -21,6 +18,8 @@ import ubb.scs.map.service.UtilizatorService;
 import ubb.scs.map.utils.events.ChangeEventType;
 import ubb.scs.map.utils.events.PrietenieEntityChangeEvent;
 import ubb.scs.map.utils.observer.Observer;
+import ubb.scs.map.utils.paging.Page;
+import ubb.scs.map.utils.paging.Pageable;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,6 +40,16 @@ public class UtilizatorMenuController implements Observer<PrietenieEntityChangeE
     private TableColumn<Utilizator, String> tableColumnLastName;
     @FXML
     private TableColumn<Utilizator, String> tableColumnRequestStatus;
+    @FXML
+    private CheckBox showAllCheckBox;
+    @FXML
+    private Button buttonPrevious, buttonNext;
+    @FXML
+    private Label labelPage;
+
+    private final int pageSize = 5;
+    private int currentPage = 0;
+    private int nrElements = 0;
 
     public void setData(Utilizator utilizator, UtilizatorService utilizatorService, PrietenieService prietenieService, MesajService mesajService, Stage dialog) {
         this.utilizator = utilizator;
@@ -63,12 +72,46 @@ public class UtilizatorMenuController implements Observer<PrietenieEntityChangeE
         });
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView.setItems(model);
+
+        showAllCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            currentPage = 0;
+            initModel();
+        });
     }
 
     private void initModel() {
-        Iterable<Utilizator> utilizatori = utilizatorService.getUtilizatori();
-        List<Utilizator> utilizatoriList = StreamSupport.stream(utilizatori.spliterator(), false).filter(u -> !u.getId().equals(utilizator.getId())).collect(Collectors.toList());
+        Page<Utilizator> page;
+        if (showAllCheckBox.isSelected()) {
+            page = utilizatorService.findAllOnPage(new Pageable(currentPage, pageSize));
+        } else {
+            page = prietenieService.findAllOnPage(new Pageable(currentPage, pageSize), utilizator.getId());
+        }
+        int maxPage = (int) Math.ceil((double) page.getTotalNumberOfElements() / pageSize) - 1;
+        if (maxPage == -1) {
+            maxPage = 0;
+        }
+
+        if (currentPage > maxPage) {
+            currentPage = maxPage;
+            if (showAllCheckBox.isSelected()) {
+                page = utilizatorService.findAllOnPage(new Pageable(currentPage, pageSize));
+            } else {
+                page = prietenieService.findAllOnPage(new Pageable(currentPage, pageSize), utilizator.getId());
+            }
+        }
+        nrElements = page.getTotalNumberOfElements();
+//        System.out.println(nrElements);
+        buttonPrevious.setDisable(currentPage == 0);
+        buttonNext.setDisable((currentPage + 1) * pageSize >= nrElements);
+        List<Utilizator> utilizatoriList = StreamSupport.stream(page.getElementsOnPage().spliterator(), false).filter(u -> !u.getId().equals(utilizator.getId())).collect(Collectors.toList());
+
+        if (utilizatoriList.size() < pageSize && (currentPage + 1) * pageSize < nrElements) {
+            Page<Utilizator> nextPage = utilizatorService.findAllOnPage(new Pageable(currentPage + 1, pageSize));
+            Iterable<Utilizator> nextPageIterable = nextPage.getElementsOnPage();
+            utilizatoriList.add(nextPageIterable.iterator().next());
+        }
         model.setAll(utilizatoriList);
+        labelPage.setText("Pagina " + (currentPage + 1) + " / " + (maxPage + 1));
     }
 
     public void handleAddPrietenie(ActionEvent actionEvent) {
@@ -132,6 +175,16 @@ public class UtilizatorMenuController implements Observer<PrietenieEntityChangeE
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void handleNextPage(ActionEvent actionEvent) {
+        currentPage++;
+        initModel();
+    }
+
+    public void handlePreviousPage(ActionEvent actionEvent) {
+        currentPage--;
+        initModel();
     }
 
 

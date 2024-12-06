@@ -3,11 +3,13 @@ package ubb.scs.map.service;
 import ubb.scs.map.domain.Utilizator;
 import ubb.scs.map.domain.validators.ServiceException;
 import ubb.scs.map.domain.validators.ValidationException;
-import ubb.scs.map.repository.Repository;
+import ubb.scs.map.repository.PagingRepository;
 import ubb.scs.map.utils.events.ChangeEventType;
 import ubb.scs.map.utils.events.UtilizatorEntityChangeEvent;
 import ubb.scs.map.utils.observer.Observable;
 import ubb.scs.map.utils.observer.Observer;
+import ubb.scs.map.utils.paging.Page;
+import ubb.scs.map.utils.paging.Pageable;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,10 +18,10 @@ import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 public class UtilizatorService implements Observable<UtilizatorEntityChangeEvent> {
-    private final Repository<Long, Utilizator> utilizatorRepository;
+    private final PagingRepository<Long, Utilizator> utilizatorRepository;
     private final List<Observer<UtilizatorEntityChangeEvent>> observers = new ArrayList<>();
 
-    public UtilizatorService(Repository<Long, Utilizator> utilizatorRepository) {
+    public UtilizatorService(PagingRepository<Long, Utilizator> utilizatorRepository) {
         this.utilizatorRepository = utilizatorRepository;
     }
 
@@ -74,5 +76,9 @@ public class UtilizatorService implements Observable<UtilizatorEntityChangeEvent
     public void notifyObservers(UtilizatorEntityChangeEvent t) {
 
         observers.stream().forEach(x -> x.update(t));
+    }
+
+    public Page<Utilizator> findAllOnPage(Pageable pageable) {
+        return utilizatorRepository.findAllOnPage(pageable);
     }
 }
