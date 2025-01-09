@@ -1,0 +1,15 @@
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/bin/Debug/net9.0/Lab10
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/bin/Debug/net9.0/Lab10.deps.json
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/bin/Debug/net9.0/Lab10.runtimeconfig.json
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/bin/Debug/net9.0/Lab10.dll
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/bin/Debug/net9.0/Lab10.pdb
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.GeneratedMSBuildEditorConfig.editorconfig
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.AssemblyInfoInputs.cache
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.AssemblyInfo.cs
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.csproj.CoreCompileInputs.cache
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.sourcelink.json
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.dll
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/refint/Lab10.dll
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.pdb
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/Lab10.genruntimeconfig.cache
+/home/marianpc/Documents/Projects/FCLT/An 2 - Sem 1/MAP/Laboratoare/Lab10/Lab10/obj/Debug/net9.0/ref/Lab10.dll

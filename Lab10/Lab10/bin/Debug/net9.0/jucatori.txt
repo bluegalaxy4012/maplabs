@@ -1,0 +1,60 @@
+1,Vasile,Scoala Gimnaziala Horea,1
+2,George,Scoala Gimnaziala Horea,1
+3,Marius,Scoala Gimnaziala Horea,1
+4,Gheorghe,Scoala Gimnaziala Horea,0
+5,Mihai,Scoala Gimnaziala Horea,0
+6,Dumitru,Scoala Gimnaziala Horea,0
+7,Alexandru,Scoala Gimnaziala Horea,0
+8,Dan,Scoala Gimnaziala Horea,0
+9,Andrei,Scoala Gimnaziala Horea,0
+10,Cristian,Scoala Gimnaziala Horea,0
+11,Costel,Scoala Gimnaziala Horea,0
+12,Ion,Scoala Gimnaziala Horea,0
+13,Adrian,Scoala Gimnaziala Horea,0
+14,Flaviu,Scoala Gimnaziala Horea,0
+15,Florin,Scoala Gimnaziala Horea,0
+16,George,Scoala Gimnaziala Octavian Goga,2
+17,Flaviu,Scoala Gimnaziala Octavian Goga,2
+18,Costel,Scoala Gimnaziala Octavian Goga,2
+19,Andrei,Scoala Gimnaziala Octavian Goga,0
+20,Mihai,Scoala Gimnaziala Octavian Goga,0
+21,Florin,Scoala Gimnaziala Octavian Goga,0
+22,Cristian,Scoala Gimnaziala Octavian Goga,0
+23,Dumitru,Scoala Gimnaziala Octavian Goga,0
+24,Marius,Scoala Gimnaziala Octavian Goga,0
+25,Ion,Scoala Gimnaziala Octavian Goga,0
+26,Alexandru,Scoala Gimnaziala Octavian Goga,0
+27,Dan,Scoala Gimnaziala Octavian Goga,0
+28,Vasile,Scoala Gimnaziala Octavian Goga,0
+29,Adrian,Scoala Gimnaziala Octavian Goga,0
+30,Gheorghe,Scoala Gimnaziala Octavian Goga,0
+31,Flaviu,Liceul Teoretic Lucian Blaga,3
+32,Mihai,Liceul Teoretic Lucian Blaga,3
+33,Cristian,Liceul Teoretic Lucian Blaga,3
+34,Alexandru,Liceul Teoretic Lucian Blaga,0
+35,Florin,Liceul Teoretic Lucian Blaga,0
+36,Ion,Liceul Teoretic Lucian Blaga,0
+37,Costel,Liceul Teoretic Lucian Blaga,0
+38,Gheorghe,Liceul Teoretic Lucian Blaga,0
+39,Andrei,Liceul Teoretic Lucian Blaga,0
+40,George,Liceul Teoretic Lucian Blaga,0
+41,Adrian,Liceul Teoretic Lucian Blaga,0
+42,Dumitru,Liceul Teoretic Lucian Blaga,0
+43,Dan,Liceul Teoretic Lucian Blaga,0
+44,Vasile,Liceul Teoretic Lucian Blaga,0
+45,Marius,Liceul Teoretic Lucian Blaga,0
+46,Cristian,Scoala Gimnaziala Ioan Bob,4
+47,Florin,Scoala Gimnaziala Ioan Bob,4
+48,Marius,Scoala Gimnaziala Ioan Bob,4
+49,Mihai,Scoala Gimnaziala Ioan Bob,0
+50,Alexandru,Scoala Gimnaziala Ioan Bob,0
+51,Dumitru,Scoala Gimnaziala Ioan Bob,0
+52,Adrian,Scoala Gimnaziala Ioan Bob,0
+53,George,Scoala Gimnaziala Ioan Bob,0
+54,Flaviu,Scoala Gimnaziala Ioan Bob,0
+55,Gheorghe,Scoala Gimnaziala Ioan Bob,0
+56,Costel,Scoala Gimnaziala Ioan Bob,0
+57,Vasile,Scoala Gimnaziala Ioan Bob,0
+58,Dan,Scoala Gimnaziala Ioan Bob,0
+59,Ion,Scoala Gimnaziala Ioan Bob,0
+60,Andrei,Scoala Gimnaziala Ioan Bob,0
