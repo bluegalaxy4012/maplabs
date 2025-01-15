@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ubb.scs.map.domain.Utilizator;
@@ -29,6 +28,7 @@ import java.util.stream.StreamSupport;
 
 public class UtilizatorController implements Observer<UtilizatorEntityChangeEvent> {
     private final ObservableList<Utilizator> model = FXCollections.observableArrayList();
+    private final int pageSize = 5;
     private UtilizatorService utilizatorService;
     private PrietenieService prietenieService;
     private MesajService mesajService;
@@ -48,8 +48,6 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     private Label labelPage;
     @FXML
     private Button buttonPrevious, buttonNext;
-
-    private final int pageSize = 5;
     private int currentPage = 0;
     private int nrElements = 0;
 
@@ -142,14 +140,14 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
 
-        if(username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty()) {
             MessageAlert.showErrorMessage(null, "Username si parola sunt obligatorii");
             return;
         }
 
         String hashedPassword = HashUtils.hashPassword(password);
         Optional<Utilizator> utilizator = utilizatorService.findByLogin(username, hashedPassword);
-        if(utilizator.isEmpty()) {
+        if (utilizator.isEmpty()) {
             MessageAlert.showErrorMessage(null, "Username sau parola gresite");
         } else {
             showUtilizatorMenuDialog(utilizator.get());
@@ -221,7 +219,7 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
             AnchorPane root = loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Profil utilizator");
+            dialogStage.setTitle("Profil utilizator " + utilizator.getUsername());
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);

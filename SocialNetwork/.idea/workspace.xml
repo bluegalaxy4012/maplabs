@@ -5,33 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3849faae-8726-4b9e-821c-4cf5d402f8ae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/bin/Debug/net9.0/Lab10.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/bin/Debug/net9.0/Lab10.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/bin/Debug/net9.0/Lab10.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/bin/Debug/net9.0/Lab10.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/bin/Debug/net9.0/meciuri.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/bin/Debug/net9.0/meciuri.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/Lab10.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/ref/Lab10.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/ref/Lab10.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/refint/Lab10.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab10/Lab10/obj/Debug/net9.0/refint/Lab10.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2/storage_v2/_src_/database/socialnetwork.IX5BsA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/45c71754-838d-4668-8be8-a48a23c636d2/storage_v2/_src_/database/socialnetwork.IX5BsA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/EditUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/EditUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/JavaFxGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/JavaFxGUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/controller/UtilizatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Utilizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/Utilizator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/validators/UtilizatorValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/domain/validators/UtilizatorValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/AbstractDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/PrietenieDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/database/UtilizatorDbRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/file/UtilizatorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/repository/file/UtilizatorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/PrietenieService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/service/UtilizatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ubb/scs/map/ui/ConsoleUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/utilizator-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/profile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ubb/scs/map/views/profile-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +42,8 @@
       <list>
         <option value="Exception" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -234,7 +211,8 @@
       <workItem from="1734790022071" duration="3781000" />
       <workItem from="1735065749874" duration="5687000" />
       <workItem from="1736843634588" duration="2592000" />
-      <workItem from="1736879538116" duration="14877000" />
+      <workItem from="1736879538116" duration="14967000" />
+      <workItem from="1736940458724" duration="4028000" />
     </task>
     <servers />
   </component>
