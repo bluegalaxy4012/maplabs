@@ -4,6 +4,7 @@ import ubb.scs.map.domain.validators.ServiceException;
 import ubb.scs.map.domain.validators.ValidationException;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
+import ubb.scs.map.utils.HashUtils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -79,7 +80,13 @@ public class ConsoleUI {
             String firstName = scanner.nextLine();
             System.out.print("Introdu numele de familie: ");
             String lastName = scanner.nextLine();
-            utilizatorService.addUtilizator(firstName, lastName);
+            System.out.println("Introdu username: ");
+            String username = scanner.nextLine();
+            System.out.println("Introdu parola: ");
+            String password = scanner.nextLine();
+            //hash la parola inainte
+            String hashedPassword = HashUtils.hashPassword(password);
+            utilizatorService.addUtilizator(firstName, lastName, username, hashedPassword);
             System.out.println("Utilizator adaugat.");
         } catch (ValidationException | ServiceException | IllegalArgumentException e) {
             System.out.println("Eroare: " + e.getMessage());

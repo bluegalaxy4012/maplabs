@@ -3,7 +3,7 @@ package ubb.scs.map.service;
 import ubb.scs.map.domain.Utilizator;
 import ubb.scs.map.domain.validators.ServiceException;
 import ubb.scs.map.domain.validators.ValidationException;
-import ubb.scs.map.repository.PagingRepository;
+import ubb.scs.map.repository.database.UtilizatorDbRepository;
 import ubb.scs.map.utils.events.ChangeEventType;
 import ubb.scs.map.utils.events.UtilizatorEntityChangeEvent;
 import ubb.scs.map.utils.observer.Observable;
@@ -18,18 +18,18 @@ import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 public class UtilizatorService implements Observable<UtilizatorEntityChangeEvent> {
-    private final PagingRepository<Long, Utilizator> utilizatorRepository;
+    private final UtilizatorDbRepository utilizatorRepository;
     private final List<Observer<UtilizatorEntityChangeEvent>> observers = new ArrayList<>();
 
-    public UtilizatorService(PagingRepository<Long, Utilizator> utilizatorRepository) {
+    public UtilizatorService(UtilizatorDbRepository utilizatorRepository) {
         this.utilizatorRepository = utilizatorRepository;
     }
 
-    public void addUtilizator(String firstName, String lastName) throws ValidationException, ServiceException {
+    public void addUtilizator(String firstName, String lastName, String username, String hashedPassword) throws ValidationException, ServiceException {
         Long largestId = StreamSupport.stream(utilizatorRepository.findAll().spliterator(), false).max(Comparator.comparing(Utilizator::getId)).map(Utilizator::getId).orElse(0L);
 
         Long newId = largestId + 1;
-        Utilizator utilizator = new Utilizator(firstName, lastName);
+        Utilizator utilizator = new Utilizator(firstName, lastName, username, hashedPassword);
         utilizator.setId(newId);
 
         if (utilizatorRepository.save(utilizator).isPresent()) {
@@ -57,8 +57,13 @@ public class UtilizatorService implements Observable<UtilizatorEntityChangeEvent
         return utilizator;
     }
 
+
     public Iterable<Utilizator> getUtilizatori() {
         return utilizatorRepository.findAll();
+    }
+
+    public Optional<Utilizator> findByLogin(String username, String hashedPassword) {
+        return utilizatorRepository.findByLogin(username, hashedPassword);
     }
 
     @Override

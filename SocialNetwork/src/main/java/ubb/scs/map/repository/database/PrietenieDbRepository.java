@@ -88,7 +88,7 @@ public class PrietenieDbRepository extends AbstractDbRepository<Tuplu<Long, Long
         return new Page<>(friends, totalNumberOfElements);
     }
 
-    private int countFriends(Long userId) {
+    public int countFriends(Long userId) {
         String query = "SELECT COUNT(*) FROM Utilizatori u JOIN Prietenii p1 ON u.id = p1.id2 JOIN Prietenii p2 ON p1.id1 = p2.id2 AND p1.id2 = p2.id1 WHERE p1.id1 = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);

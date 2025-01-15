@@ -11,13 +11,13 @@ public class UtilizatorRepository extends AbstractFileRepository<Long, Utilizato
     @Override
     public Utilizator createEntity(String line) {
         String[] splited = line.split(";");
-        Utilizator u = new Utilizator(splited[1], splited[2]);
+        Utilizator u = new Utilizator(splited[1], splited[2], splited[3], splited[4]);
         u.setId(Long.parseLong(splited[0]));
         return u;
     }
 
     @Override
     public String saveEntity(Utilizator entity) {
-        return entity.getId() + ";" + entity.getFirstName() + ";" + entity.getLastName();
+        return entity.getId() + ";" + entity.getFirstName() + ";" + entity.getLastName() + ";" + entity.getUsername() + ";" + entity.getHashedPassword();
     }
 }

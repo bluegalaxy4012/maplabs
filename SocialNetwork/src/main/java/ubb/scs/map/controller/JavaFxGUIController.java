@@ -38,8 +38,8 @@ public class JavaFxGUIController {
     public void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
         btnHello.setText("alt text");
-        List<Utilizator> list = Arrays.asList(new Utilizator("dan", "ana"));
-        ObservableList<Utilizator> observableList = FXCollections.observableList(list);
-        listView.setItems(observableList);
+        //List<Utilizator> list = Arrays.asList(new Utilizator("dan", "ana"));
+        //ObservableList<Utilizator> observableList = FXCollections.observableList(list);
+        //listView.setItems(observableList);
     }
 }

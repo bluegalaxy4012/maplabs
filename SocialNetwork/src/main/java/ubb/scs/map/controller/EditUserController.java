@@ -44,7 +44,7 @@ public class EditUserController {
         String firstNameText= textFieldFirstName.getText();
         String lastNameText= textFieldLastName.getText();
 
-        Utilizator utilizator1=new Utilizator(firstNameText,lastNameText);
+        Utilizator utilizator1=new Utilizator(firstNameText,lastNameText,"a", "a");
         utilizator1.setId(Long.valueOf(id));
         if (null == this.utilizator)
             saveMessage(utilizator1);
@@ -69,7 +69,7 @@ public class EditUserController {
     {
         try {
             try {
-                this.service.addUtilizator(m.getFirstName(), m.getLastName());
+                this.service.addUtilizator(m.getFirstName(), m.getLastName(), "a", "a");
             }
             catch (ServiceException e)
             {

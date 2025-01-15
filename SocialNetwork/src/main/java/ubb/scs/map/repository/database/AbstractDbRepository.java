@@ -106,11 +106,13 @@ public abstract class AbstractDbRepository<ID, E extends Entity<ID>> implements 
     @Override
     public Optional<E> update(E entity) {
         validator.validate(entity);
-        String query = "UPDATE " + getTableName() + " SET " + getColumnNames() + " WHERE " + getPrimaryKeyCondition();
+        String[] columns = getColumnNames().split(", ");
+        String setClause = String.join(" = ?, ", columns) + " = ?";
+        String query = "UPDATE " + getTableName() + " SET " + setClause + " WHERE " + getPrimaryKeyCondition();
         int rez = -1;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             setEntityParameters(statement, entity);
-            setPrimaryKeyParameters(statement, entity.getId());
+            statement.setLong(getColumnCount() + 1, (long) entity.getId());
             rez = statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

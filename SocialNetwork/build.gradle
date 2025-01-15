@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.6.0'
     implementation "org.openjfx:javafx-controls:21.0.5"
     implementation "org.openjfx:javafx-fxml:21.0.5"
+    implementation "commons-codec:commons-codec:1.15"
 }
 
 javafx {

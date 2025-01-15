@@ -6,6 +6,7 @@ import ubb.scs.map.domain.validators.Validator;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class UtilizatorDbRepository extends AbstractDbRepository<Long, Utilizator> {
 
@@ -18,8 +19,12 @@ public class UtilizatorDbRepository extends AbstractDbRepository<Long, Utilizato
         Long id = resultSet.getLong("id");
         String firstName = resultSet.getString("first_name");
         String lastName = resultSet.getString("last_name");
-        Utilizator utilizator = new Utilizator(firstName, lastName);
+        String username = resultSet.getString("username");
+        String hashedPassword = resultSet.getString("hashed_password");
+        String profilePictureUrl = resultSet.getString("profile_picture_url");
+        Utilizator utilizator = new Utilizator(firstName, lastName, username, hashedPassword);
         utilizator.setId(id);
+        utilizator.setProfilePictureUrl(profilePictureUrl);
         return utilizator;
     }
 
@@ -27,6 +32,9 @@ public class UtilizatorDbRepository extends AbstractDbRepository<Long, Utilizato
     protected void setEntityParameters(PreparedStatement statement, Utilizator entity) throws SQLException {
         statement.setString(1, entity.getFirstName());
         statement.setString(2, entity.getLastName());
+        statement.setString(3, entity.getUsername());
+        statement.setString(4, entity.getHashedPassword());
+        statement.setString(5, entity.getProfilePictureUrl());
     }
 
     @Override
@@ -46,11 +54,27 @@ public class UtilizatorDbRepository extends AbstractDbRepository<Long, Utilizato
 
     @Override
     protected String getColumnNames() {
-        return "first_name, last_name";
+        return "first_name, last_name, username, hashed_password, profile_picture_url";
     }
 
     @Override
     protected int getColumnCount() {
-        return 2;
+        return 5;
     }
+
+    public Optional<Utilizator> findByLogin(String username, String hashedPassword) {
+        String query = "SELECT * FROM " + getTableName() + " WHERE username = ? AND hashed_password = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, username);
+            statement.setString(2, hashedPassword);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return Optional.of(extractEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
 }

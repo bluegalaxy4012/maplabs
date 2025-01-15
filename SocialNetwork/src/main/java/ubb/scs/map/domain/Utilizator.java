@@ -5,10 +5,16 @@ import java.util.Objects;
 public class Utilizator extends Entity<Long> {
     private final String firstName;
     private final String lastName;
+    private final String username;
+    private final String hashedPassword;
+    private String profilePictureUrl;
 
-    public Utilizator(String firstName, String lastName) {
+    public Utilizator(String firstName, String lastName, String username, String hashedPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
+        this.hashedPassword = hashedPassword;
+        profilePictureUrl = "@../images/defaultprofilepicture.png";
     }
 
     public String getFirstName() {
@@ -19,6 +25,22 @@ public class Utilizator extends Entity<Long> {
         return lastName;
     }
 
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
     @Override
     public String toString() {
         return "Utilizator{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", id=" + getId() + "}";
@@ -27,13 +49,12 @@ public class Utilizator extends Entity<Long> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Utilizator)) return false;
-        Utilizator that = (Utilizator) o;
-        return getFirstName().equals(that.getFirstName()) && getLastName().equals(that.getLastName());
+        if (!(o instanceof Utilizator that)) return false;
+        return Objects.equals(username, that.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFirstName(), getLastName());
+        return Objects.hashCode(username);
     }
 }

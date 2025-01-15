@@ -6,7 +6,7 @@ import ubb.scs.map.domain.Utilizator;
 public class UtilizatorValidator implements Validator<Utilizator> {
     @Override
     public void validate(Utilizator entity) throws ValidationException {
-        if (entity.getFirstName().length() <= 1 || entity.getLastName().length() <= 1 || !(entity.getId() >= 0))
+        if (entity.getFirstName().length() <= 1 || entity.getLastName().length() <= 1 || !(entity.getId() >= 0) || entity.getUsername().length() <= 1 || entity.getHashedPassword().length() <= 1)
             throw new ValidationException("Utilizatorul nu este valid.");
     }
 }

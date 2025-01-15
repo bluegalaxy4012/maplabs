@@ -9,12 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ubb.scs.map.domain.Utilizator;
 import ubb.scs.map.service.MesajService;
 import ubb.scs.map.service.PrietenieService;
 import ubb.scs.map.service.UtilizatorService;
+import ubb.scs.map.utils.HashUtils;
 import ubb.scs.map.utils.events.UtilizatorEntityChangeEvent;
 import ubb.scs.map.utils.observer.Observer;
 import ubb.scs.map.utils.paging.Page;
@@ -22,6 +24,7 @@ import ubb.scs.map.utils.paging.Pageable;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 public class UtilizatorController implements Observer<UtilizatorEntityChangeEvent> {
@@ -40,11 +43,13 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     @FXML
     private TextField lastNameFilter;
     @FXML
+    private TextField usernameTextField, passwordTextField;
+    @FXML
     private Label labelPage;
     @FXML
     private Button buttonPrevious, buttonNext;
 
-    private final int pageSize = 6;
+    private final int pageSize = 5;
     private int currentPage = 0;
     private int nrElements = 0;
 
@@ -133,6 +138,25 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
         initModel();
     }
 
+    public void handleLogin(ActionEvent actionEvent) {
+        String username = usernameTextField.getText();
+        String password = passwordTextField.getText();
+
+        if(username.isEmpty() || password.isEmpty()) {
+            MessageAlert.showErrorMessage(null, "Username si parola sunt obligatorii");
+            return;
+        }
+
+        String hashedPassword = HashUtils.hashPassword(password);
+        Optional<Utilizator> utilizator = utilizatorService.findByLogin(username, hashedPassword);
+        if(utilizator.isEmpty()) {
+            MessageAlert.showErrorMessage(null, "Username sau parola gresite");
+        } else {
+            showUtilizatorMenuDialog(utilizator.get());
+            showProfilePage(utilizator.get());
+        }
+    }
+
     private boolean filterByFirstName(Utilizator utilizator) {
         if (firstNameFilter.getText() == null || firstNameFilter.getText().trim().isEmpty()) {
             return true;
@@ -183,6 +207,27 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
 
             EditUserController editUserController = loader.getController();
             editUserController.setService(utilizatorService, dialogStage, utilizator);
+
+            dialogStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void showProfilePage(Utilizator utilizator) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/profile-view.fxml"));
+            AnchorPane root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Profil utilizator");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+
+            ProfileController profileController = loader.getController();
+            profileController.setData(utilizator, utilizatorService, prietenieService, dialogStage);
 
             dialogStage.show();
         } catch (IOException e) {

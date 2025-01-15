@@ -92,6 +92,10 @@ public class PrietenieService implements Observable<PrietenieEntityChangeEvent> 
 
     }
 
+    public int getNumarPrieteni(Long userId) {
+        return prietenieRepository.countFriends(userId);
+    }
+
     private Map<Long, List<Long>> buildGraf() {
         Map<Long, List<Long>> graf = new HashMap<>();
         Iterable<Prietenie> prietenii = prietenieRepository.findAll();

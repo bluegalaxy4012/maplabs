@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>980</IntrospectionStateNumber>
-      <ServerVersion>14.13</ServerVersion>
-      <StartupTime>1732532100</StartupTime>
+      <IntrospectionStateNumber>1251</IntrospectionStateNumber>
+      <ServerVersion>14.15</ServerVersion>
+      <StartupTime>1736877068</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1405,7 +1405,7 @@ false posixrules
 13555||10|C|G
 13555||-9223372036854775808|U|G
 13555||10|U|G</Grants>
-      <IntrospectionStateNumber>980</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1251</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4830,8 +4830,8 @@ false posixrules
     <schema id="262" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>980</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-11-25.18:54:26</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>1251</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-01-14.23:23:23</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4872,7 +4872,7 @@ false posixrules
     </table>
     <table id="268" parent="262" name="utilizatori">
       <ObjectId>16416</ObjectId>
-      <StateNumber>807</StateNumber>
+      <StateNumber>1250</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -5075,7 +5075,29 @@ to_id</ColNames>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="294" parent="268" name="utilizatori_pkey">
+    <column id="294" parent="268" name="username">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1229</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="295" parent="268" name="hashed_password">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>1230</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="296" parent="268" name="profile_picture_url">
+      <DefaultExpression>&apos;https://i.imgur.com/ELQuYa3.png&apos;::character varying</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StateNumber>1250</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="297" parent="268" name="utilizatori_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16420</ObjectId>
@@ -5084,7 +5106,7 @@ to_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="295" parent="268" name="utilizatori_pkey">
+    <key id="298" parent="268" name="utilizatori_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16421</ObjectId>
       <Primary>1</Primary>
